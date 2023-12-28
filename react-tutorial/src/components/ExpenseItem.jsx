@@ -1,17 +1,20 @@
 import React from 'react'
-import './ExpenseItem.css'
-import ExpenseDate from './ExpenseDate'
+import './Expenses.css'
 import ExpenseDetails from './ExpenseDetails'
+import Card from './Card'
 
 const ExpenseItem = (props) => {
     return (
-        <div className="expense-item">
-            <ExpenseDate date={props.date} />
-            <ExpenseDetails
-                amount={props.amount}
-                location={props.location}
-                description={props.description} />
-        </div>
+        <Card className="expenses">
+            {props.items.map((expense) => (
+                <ExpenseDetails
+                    key={expense.id}
+                    date={expense.date}
+                    amount={expense.amount}
+                    location={expense.location}
+                    description={expense.description} />
+            ))}
+        </Card>
 
     )
 }

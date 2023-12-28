@@ -8,7 +8,7 @@ function App() {
       date: new Date(2023, 1, 1),
       location: "Mumbai",
       description: "Tea",
-      amount: 150,
+      amount: 50,
     },
     {
       id: 2,
@@ -71,22 +71,14 @@ function App() {
       date: new Date(2023, 1, 10),
       location: "Lucknow",
       description: "Tea",
-      amount: 160,
+      amount: 60,
     }
   ];
 
   return (
     <div>
       <h1>Expense Tracker</h1>
-      {Array.from({ length: 10 }, (_, index) => (
-        <ExpenseItem key={expenses[index].id}
-          date={expenses[index].date}
-          location={expenses[index].location}
-          description={expenses[index].description}
-          amount={expenses[index].amount}
-        ></ExpenseItem>
-      ))
-      }
+      <ExpenseItem items={expenses} />
     </div >
   );
 }
