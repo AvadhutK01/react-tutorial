@@ -2,18 +2,24 @@ import React, { useState } from 'react'
 import './ExpenseForm.css'
 
 const ExpenseForm = () => {
-    const [enteredAmount, setEnteredAmount] = useState('');
-    const [enteredDate, setEnteredDate] = useState('');
-    const [enteredLocation, setEnteredLocation] = useState('');
-    const [enteredtitle, setEnteredtitle] = useState('');
+    // const [enteredAmount, setEnteredAmount] = useState('');
+    // const [enteredDate, setEnteredDate] = useState('');
+    // const [enteredLocation, setEnteredLocation] = useState('');
+    // const [enteredtitle, setEnteredtitle] = useState('');
 
+    const [userInput, setUserInput] = useState({
+        enteredAmount: '',
+        enteredDate: '',
+        enteredLocation: '',
+        enteredTitle: '',
+    })
     const submitHandler = (e) => {
         e.preventDefault();
         const expenseData = {
-            amount: enteredAmount,
-            date: enteredDate,
-            location: enteredLocation,
-            description: enteredtitle,
+            amount: userInput.enteredAmount,
+            date: userInput.enteredDate,
+            location: userInput.enteredLocation,
+            description: userInput.enteredTitle,
         }
         console.log(expenseData);
     }
@@ -26,22 +32,44 @@ const ExpenseForm = () => {
                     <label>
                         Date:
                     </label>
-                    <input type="date" onChange={(e) => setEnteredDate(e.target.value)} />
+                    <input type="date" onChange={(e) => setUserInput((previousState) => {
+                        return {
+                            ...previousState,
+                            enteredDate: e.target.value
+                        }
+                    })} />
                     <br />
                 </div>
                 <div className="new-expense__controls">
                     <label>Amount:</label>
-                    <input type="number" onChange={(e) => setEnteredAmount(e.target.value)} />
+                    <input type="number" onChange={(e) => {
+                        setUserInput((previousState) => {
+                            return {
+                                ...previousState,
+                                enteredAmount: e.target.value
+                            }
+                        })
+                    }} />
                     <br />
                 </div>
                 <div className="new-expense__controls">
                     <label>Location:</label>
-                    <input type="text" onChange={(e) => setEnteredLocation(e.target.value)} />
+                    <input type="text" onChange={(e) => setUserInput((previousState) => {
+                        return {
+                            ...previousState,
+                            enteredLocation: e.target.value
+                        }
+                    })} />
                     <br />
                 </div>
                 <div className="new-expense__controls">
                     <label>Title:</label>
-                    <input type="text" onChange={(e) => setEnteredtitle(e.target.value)} />
+                    <input type="text" onChange={(e) => setUserInput((previousState) => {
+                        return {
+                            ...previousState,
+                            enteredTitle: e.target.value
+                        }
+                    })} />
                     <br />
                 </div>
                 <div className='new-expense__actions'>
