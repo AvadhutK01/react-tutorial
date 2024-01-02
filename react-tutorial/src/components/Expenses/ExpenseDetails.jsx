@@ -6,11 +6,15 @@ import ExpenseDate from './ExpenseDate'
 
 const ExpenseDetails = (props) => {
     let [title, setTitle] = useState(props.description);
+    let [amount, setAmount] = useState(props.amount);
     const changeTitleHandler = () => {
         setTitle('Changed Title');
     }
     const deleteHandler = () => {
 
+    }
+    const changeAmountHandler = () => {
+        setAmount(100);
     }
     return (
         <Card className='expense-item'>
@@ -21,10 +25,11 @@ const ExpenseDetails = (props) => {
             <div className='expense-item__description'>
                 <h2>{title}</h2>
                 <div className='expense-item__price'>
-                    ₹ {props.amount}
+                    ₹ {amount}
                 </div>
             </div>
             <button onClick={changeTitleHandler}>Change Title</button>
+            <button onClick={changeAmountHandler}>Change Amount</button>
             <button onClick={deleteHandler}>Delete</button>
         </Card>
     )
