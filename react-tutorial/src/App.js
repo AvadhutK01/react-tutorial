@@ -1,5 +1,6 @@
+import { useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
-import ExpenseForm from "./components/Expenses/ExpenseForm";
+import NewExpense from "./components/Expenses/NewExpense";
 
 function App() {
 
@@ -75,12 +76,19 @@ function App() {
       amount: 60,
     }
   ];
+  const [expensesToPass, setExpenses] = useState(expenses);
+  const addExpenseHandler = (enteredExpenseData) => {
+    setExpenses((prevExpenses) => {
+      return [enteredExpenseData, ...prevExpenses];
+    });
+  }
+
 
   return (
     <div>
       <h1>Expense Tracker</h1>
-      <ExpenseForm />
-      <ExpenseItem items={expenses} />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <ExpenseItem items={expensesToPass} />
     </div >
   );
 }
