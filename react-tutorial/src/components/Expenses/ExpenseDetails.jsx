@@ -5,8 +5,8 @@ import ExpenseDate from './ExpenseDate'
 
 
 const ExpenseDetails = (props) => {
-    let [title, setTitle] = useState(props.description);
-    let [amount, setAmount] = useState(props.amount);
+    const [title, setTitle] = useState(props.description);
+    const [amount, setAmount] = useState(props.amount);
     const changeTitleHandler = () => {
         setTitle('Changed Title');
     }
