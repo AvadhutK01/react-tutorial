@@ -8,6 +8,10 @@
   cursor: pointer;
 }
 
+.button.invalid {
+  background: #fda4e0;
+}
+
 .button:focus {
   outline: none;
 }
