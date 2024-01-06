@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from 'react';
+import React, { useState, useEffect, useReducer, useContext, useRef } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -90,15 +90,31 @@ const Login = () => {
     dispatchPassword({ type: 'INPUT_BLUR' });
   };
 
+  const emailRef = useRef();
+  const passRef = useRef();
+  const collegeRef = useRef();
+
   const submitHandler = (event) => {
     event.preventDefault();
-    ctx.onLogin(emailState.value, passwordState.value);
+    if (formIsValid) {
+      ctx.onLogin(emailState.value, passwordState.value);
+    }
+    else if (!emailState.isValid) {
+      emailRef.current.focus();
+    }
+    else if (!collegeState.isValid) {
+      collegeRef.current.focus()
+    }
+    else if (!passwordState.isValid) {
+      passRef.current.focus()
+    }
   };
 
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <Input
+          ref={emailRef}
           type="text"
           id="email"
           label='Email'
@@ -108,6 +124,7 @@ const Login = () => {
           onBlur={validateEmailHandler}
         />
         <Input
+          ref={collegeRef}
           type="text"
           id="college"
           label='College'
@@ -117,6 +134,7 @@ const Login = () => {
           onBlur={validateCollegeHandler}
         />
         <Input
+          ref={passRef}
           type="password"
           id="password"
           label='Password'
@@ -126,7 +144,7 @@ const Login = () => {
           onBlur={validatePasswordHandler}
         />
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+          <Button type="submit" className={classes.btn}>
             Login
           </Button>
         </div>
