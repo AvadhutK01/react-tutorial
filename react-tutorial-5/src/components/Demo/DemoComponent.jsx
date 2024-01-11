@@ -6,4 +6,4 @@ const DemoComponent = (props) => {
     )
 }
 
-export default DemoComponent
+export default React.memo(DemoComponent);
